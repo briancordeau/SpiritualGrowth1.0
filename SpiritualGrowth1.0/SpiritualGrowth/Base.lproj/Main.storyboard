@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SpiritualGrowth" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="OIZ-WO-052" userLabel="TopStack">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" verticalCompressionResistancePriority="100" text="Spiritual Growth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7f-e6-D52">
+                                        <rect key="frame" x="117.5" y="0.0" width="140" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GyV-9q-O6b">
+                                        <rect key="frame" x="162.5" y="28" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="4WW-X9-8Nb"/>
+                                            <constraint firstAttribute="height" constant="50" id="wfZ-oW-UNk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
+                                        <color key="textColor" systemColor="systemGreenColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="245" verticalHuggingPriority="231" text="To Do Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5B-qs-qYT">
+                                        <rect key="frame" x="5" y="82" width="365" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="d5B-qs-qYT" secondAttribute="trailing" constant="5" id="Djn-7v-m53"/>
+                                    <constraint firstItem="d5B-qs-qYT" firstAttribute="leading" secondItem="OIZ-WO-052" secondAttribute="leading" constant="5" id="mth-hc-8Pt"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="d0E-s8-Akf" userLabel="MiddleStack">
+                                <rect key="frame" x="0.0" y="143" width="375" height="0.0"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6jW-cf-1Pd">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" none="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="380" id="oXD-I6-36s"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AjI-Td-YQ7" userLabel="BottomStack">
+                                <rect key="frame" x="0.0" y="519" width="375" height="148"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-hM-7X3">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Share">
+                                            <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="40"/>
+                                            <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="shareMe:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HoV-g5-SeZ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Change Number of Activities Swipe Down to Update Activities" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYX-lQ-yp2" userLabel="Tap to Change Number of Activities Swipe Down to Update Activities">
+                                        <rect key="frame" x="0.0" y="62" width="375" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xas-td-fSp">
+                                        <rect key="frame" x="0.0" y="110" width="375" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Suggest New Actifities">
+                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="20"/>
+                                            <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="makeSuggestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yqN-Ur-FBA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="d0E-s8-Akf" firstAttribute="top" secondItem="OIZ-WO-052" secondAttribute="bottom" constant="25" id="3iG-ET-9mK"/>
+                            <constraint firstItem="d0E-s8-Akf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6eQ-rg-d1G"/>
+                            <constraint firstItem="OIZ-WO-052" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Kxc-yT-jga"/>
+                            <constraint firstItem="AjI-Td-YQ7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M3S-NF-tzc"/>
+                            <constraint firstItem="AjI-Td-YQ7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ayh-1d-9ET"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OIZ-WO-052" secondAttribute="trailing" id="gFx-v7-ADz"/>
+                            <constraint firstItem="OIZ-WO-052" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gel-31-OQW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d0E-s8-Akf" secondAttribute="trailing" id="iVi-fd-QPO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AjI-Td-YQ7" secondAttribute="trailing" id="nHn-DI-5No"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AjI-Td-YQ7" secondAttribute="bottom" id="sRD-Ts-oN7"/>
+                            <constraint firstItem="OIZ-WO-052" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zFR-fq-obd"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="s36-Q4-zfe" appends="YES" id="vEz-l0-zpX"/>
+                            <outletCollection property="gestureRecognizers" destination="AP2-Qy-ygH" appends="YES" id="Typ-8E-D8O"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="activityList" destination="6jW-cf-1Pd" id="qkx-ik-aUc"/>
+                        <outlet property="doThese" destination="d5B-qs-qYT" id="2n7-E1-09o"/>
+                        <outlet property="numberOfActivities" destination="GyV-9q-O6b" id="f4D-ES-ZnU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" id="s36-Q4-zfe">
+                    <connections>
+                        <action selector="refreshActivities:" destination="BYZ-38-t0r" id="Ps8-iv-csP"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <tapGestureRecognizer id="AP2-Qy-ygH">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="cZu-Jx-qfq"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="16.744186046511629" y="1.9313304721030045"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

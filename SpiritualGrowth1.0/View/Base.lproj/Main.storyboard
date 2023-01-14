@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--moreResources-->
+        <scene sceneID="Xli-jp-TBd">
+            <objects>
+                <viewController title="moreResources" id="Ykh-kL-O6J" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2gw-7R-pTV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6DT-YN-CS1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nTg-dt-NcT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1604" y="-643"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SpiritualGrowth1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="OIZ-WO-052" userLabel="TopStack">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1" verticalHuggingPriority="1" verticalCompressionResistancePriority="100" text="Spiritual Growth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7f-e6-D52">
+                                        <rect key="frame" x="117.5" y="0.0" width="140" height="80"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stepper toolTip="Increase or Decrease Number of Activities" opaque="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="fill" autorepeat="NO" value="1" minimumValue="1" maximumValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="bdb-qX-Bho">
+                                        <rect key="frame" x="140.5" y="84" width="94" height="32"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="stepperUpdate:" destination="BYZ-38-t0r" eventType="valueChanged" id="j9E-8u-qhF"/>
+                                        </connections>
+                                    </stepper>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GyV-9q-O6b">
+                                        <rect key="frame" x="162.5" y="120" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="4WW-X9-8Nb"/>
+                                            <constraint firstAttribute="height" constant="50" id="wfZ-oW-UNk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
+                                        <color key="textColor" systemColor="systemGreenColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="245" verticalHuggingPriority="231" text="To Do Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5B-qs-qYT">
+                                        <rect key="frame" x="5" y="174" width="365" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="d5B-qs-qYT" secondAttribute="trailing" constant="5" id="Djn-7v-m53"/>
+                                    <constraint firstItem="d5B-qs-qYT" firstAttribute="leading" secondItem="OIZ-WO-052" secondAttribute="leading" constant="5" id="mth-hc-8Pt"/>
+                                </constraints>
+                            </stackView>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="c4w-pv-1aT">
+                                <rect key="frame" x="10" y="10" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stepper>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="d0E-s8-Akf" userLabel="MiddleStack">
+                                <rect key="frame" x="0.0" y="235" width="375" height="305"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qo7-EO-FOL">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="305"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                        <color key="sectionIndexColor" systemColor="systemGreenColor"/>
+                                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="activitiesToDo" rowHeight="0.0" id="TGE-k6-3Ri">
+                                                <rect key="frame" x="0.0" y="50" width="375" height="1.1920928955078125e-07"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TGE-k6-3Ri" id="ANb-aV-BxG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="1.1920928955078125e-07"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </tableViewCellContentView>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                </accessibility>
+                                                <gestureRecognizers/>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="qo7-EO-FOL" secondAttribute="trailing" id="5je-2g-4cX"/>
+                                    <constraint firstItem="qo7-EO-FOL" firstAttribute="leading" secondItem="d0E-s8-Akf" secondAttribute="leading" id="FsM-ou-AgP"/>
+                                    <constraint firstAttribute="bottom" secondItem="qo7-EO-FOL" secondAttribute="bottom" id="IK2-sb-KlI"/>
+                                    <constraint firstItem="qo7-EO-FOL" firstAttribute="top" secondItem="d0E-s8-Akf" secondAttribute="top" id="O6v-MQ-o4f"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AjI-Td-YQ7" userLabel="BottomStack">
+                                <rect key="frame" x="0.0" y="550" width="375" height="117"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-hM-7X3">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Share" titleAlignment="center">
+                                            <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="40"/>
+                                            <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="shareMe:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HoV-g5-SeZ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe Down to Change Activities" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYX-lQ-yp2" userLabel="Tap to Change Number of Activities Swipe Down to Update Activities">
+                                        <rect key="frame" x="0.0" y="62" width="375" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xas-td-fSp">
+                                        <rect key="frame" x="0.0" y="86" width="375" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Suggest New Activities">
+                                            <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="14"/>
+                                            <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="makeSuggestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yqN-Ur-FBA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="d0E-s8-Akf" firstAttribute="top" secondItem="OIZ-WO-052" secondAttribute="bottom" constant="25" id="3iG-ET-9mK"/>
+                            <constraint firstItem="d0E-s8-Akf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6eQ-rg-d1G"/>
+                            <constraint firstItem="d0E-s8-Akf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7Tb-fw-2W2"/>
+                            <constraint firstItem="d0E-s8-Akf" firstAttribute="top" secondItem="OIZ-WO-052" secondAttribute="bottom" constant="25" id="IJ6-xd-EzL"/>
+                            <constraint firstItem="OIZ-WO-052" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Kxc-yT-jga"/>
+                            <constraint firstItem="AjI-Td-YQ7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M3S-NF-tzc"/>
+                            <constraint firstItem="AjI-Td-YQ7" firstAttribute="top" secondItem="d0E-s8-Akf" secondAttribute="bottom" constant="10" id="Qj5-Bj-aI4"/>
+                            <constraint firstItem="d0E-s8-Akf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="TIP-WY-BGi"/>
+                            <constraint firstItem="AjI-Td-YQ7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ayh-1d-9ET"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OIZ-WO-052" secondAttribute="trailing" id="gFx-v7-ADz"/>
+                            <constraint firstItem="OIZ-WO-052" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gel-31-OQW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d0E-s8-Akf" secondAttribute="trailing" id="iVi-fd-QPO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AjI-Td-YQ7" secondAttribute="trailing" id="nHn-DI-5No"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="AjI-Td-YQ7" secondAttribute="bottom" id="sRD-Ts-oN7"/>
+                            <constraint firstItem="OIZ-WO-052" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zFR-fq-obd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityTableView" destination="qo7-EO-FOL" id="szw-0V-E9X"/>
+                        <outlet property="numberOfActivities" destination="GyV-9q-O6b" id="q2z-SS-AIw"/>
+                        <segue destination="Ykh-kL-O6J" kind="presentation" identifier="showAdditionalResources" id="F1m-zR-lh3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="15.199999999999999" y="1.3493253373313345"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
