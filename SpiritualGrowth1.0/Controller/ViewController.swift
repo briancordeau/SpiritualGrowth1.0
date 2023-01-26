@@ -14,34 +14,92 @@ var activitiesTodoToday=1
 
 let refreshControl = UIRefreshControl()
 
+let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Activities.plist")
+
+
+
+
+
+
+func saveActivities(){
+    
+    //build encoder to save out activity list in its current state
+    
+    let encoder = PropertyListEncoder()
+    
+    do{
+        let data = try encoder.encode(spiritualDisciplines)
+        try data.write(to:dataFilePath!)
+    }catch{
+        print("error encoding item array")
+    }
+}
+
+
+func loadActivities(){
+    
+    //load plist to spiritual disciplines in its current state
+    
+    if let data = try? Data(contentsOf: dataFilePath!)
+    {
+        let decoder = PropertyListDecoder()
+        do{
+            spiritualDisciplines = try decoder.decode([Activity].self, from: data)
+            
+        } catch{
+            print("error")
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var activityTableView: UITableView!
-        
+    
     @IBOutlet weak var numberOfActivities: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        //  print (dataFilePath)
+        
+        //load activities based on current save
+        
+        loadActivities()
+        
+        
         numberOfActivities.text = String(activitiesTodoToday)
-
-
+        
         activityTableView.delegate = self
         activityTableView.dataSource = self
-
+        activityTableView.allowsSelection = true
+        activityTableView.isUserInteractionEnabled = true
+        
         
         refreshControl.addTarget(self, action: #selector(self.refreshActivities(_:)), for: .valueChanged)
-
+        
         activityTableView.addSubview(refreshControl)
         refreshActivities((Any).self)
-
+        
         refreshControl.endRefreshing()
-
+        
         
     }
     
-  
+    
     
     @IBAction func stepperUpdate(_ sender: UIStepper) {
         
@@ -51,28 +109,26 @@ class ViewController: UIViewController {
         
         refreshActivities((Any).self)
         
-
+        
         
     }
     
     @IBAction func refreshActivities(_ sender: Any) {
         
-      
-        
-//        numberOfActivities.text =  String(activitiesTodoToday)
         
         
-
+        //        numberOfActivities.text =  String(activitiesTodoToday)
+        
+        
+        
         spiritualDisciplines.shuffle()
-        
-        
         
         activityTableView.reloadData()
         
         
         refreshControl.endRefreshing()
-
         
+        saveActivities()
     }
     
     
@@ -81,7 +137,7 @@ class ViewController: UIViewController {
     @IBAction func shareMe(_ sender: UIButton) {
         
         
-
+        
         let activityListForLabel = NSMutableAttributedString()
         
         
@@ -145,17 +201,9 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
 {
     
     
-    
-    
-    
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activitiesTodoToday
     }
-    
-    
-    
     
     
     
@@ -164,9 +212,8 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "activitiesToDo", for: indexPath)
-        
-        
-        
+        tableView.cellForRow(at: indexPath)?.accessoryType = .none
+
         
         cell.textLabel?.numberOfLines = 0
         
@@ -186,35 +233,41 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
         activityListForLabel.append(attributedString)
         
         
-        
-        
         cell.textLabel?.attributedText =  activityListForLabel
-        
+        cell.isUserInteractionEnabled = true
+        //reloadData()
         return cell
     }
     
-    
-    func tableView(_ tableView: UITableView,     didSelectRowAt indexPath: IndexPath) {
-        let selectedRow = indexPath.row
-        print(selectedRow)
-        
-        performSegue(withIdentifier: "showAdditionalResources", sender:self)
+
+    func tableView(_ tableView: UITableView,     didSelectRowAt indexPath: IndexPath)  {
+
         
         
         
+//        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+
+  //      if         tableView.cellForRow(at: indexPath)?.accessoryType == //.checkmark{
+ //           tableView.cellForRow(at: indexPath)?.accessoryType = .none
+//}
+ //       else {
+ //           tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+  //      }
+//
+  //      tableView.deselectRow(at: indexPath, animated: true)
+
         
         
+        
+        
+        
+        
+        
+       // performSegue(withIdentifier: "showAdditionalResources", sender:self)
         
     }
-    
   
-
+    
     
     
 }
-
-//    extension ViewController: UITableViewDelegate
-//    {
-//
-//    }
-
