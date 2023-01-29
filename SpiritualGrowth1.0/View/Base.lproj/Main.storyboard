@@ -13,17 +13,59 @@
         <!--moreResources-->
         <scene sceneID="Xli-jp-TBd">
             <objects>
-                <viewController title="moreResources" id="Ykh-kL-O6J" sceneMemberID="viewController">
+                <viewController title="moreResources" id="Ykh-kL-O6J" customClass="ResourcesViewController" customModule="SpiritualGrowth1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2gw-7R-pTV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="y5l-gk-iQV" userLabel="TopStack">
+                                <rect key="frame" x="15" y="25" width="148" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="245" verticalHuggingPriority="231" text="Resources" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMm-kI-Ymc" userLabel="Title">
+                                        <rect key="frame" x="0.0" y="0.0" width="148" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                        <color key="textColor" systemColor="systemGreenColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="hjX-UN-inW"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="top" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ZeQ-cS-61L" userLabel="MiddleStack">
+                                <rect key="frame" x="15" y="86" width="329" height="551"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWU-gh-pCA" userLabel="Resources">
+                                        <rect key="frame" x="0.0" y="0.0" width="329" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemGray2Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="LWU-gh-pCA" firstAttribute="top" secondItem="ZeQ-cS-61L" secondAttribute="top" id="sFp-hC-ZYA"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6DT-YN-CS1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstItem="y5l-gk-iQV" firstAttribute="leading" secondItem="6DT-YN-CS1" secondAttribute="leading" constant="15" id="FRU-sA-WqL"/>
+                            <constraint firstItem="6DT-YN-CS1" firstAttribute="bottom" secondItem="ZeQ-cS-61L" secondAttribute="bottom" constant="10" id="MDQ-XP-i9N"/>
+                            <constraint firstItem="y5l-gk-iQV" firstAttribute="top" secondItem="6DT-YN-CS1" secondAttribute="top" constant="25" id="eUw-Tx-GdG"/>
+                            <constraint firstItem="ZeQ-cS-61L" firstAttribute="top" secondItem="y5l-gk-iQV" secondAttribute="bottom" constant="25" id="iQ0-wL-9wJ"/>
+                            <constraint firstItem="ZeQ-cS-61L" firstAttribute="leading" secondItem="6DT-YN-CS1" secondAttribute="leading" constant="15" id="oGz-3P-iNG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZeQ-cS-61L" secondAttribute="trailing" constant="15" id="sSU-FT-Xa6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="displayResources" destination="LWU-gh-pCA" id="dQL-Se-tiB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nTg-dt-NcT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="-643"/>
+            <point key="canvasLocation" x="1604" y="-643.62818590704649"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -181,8 +223,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

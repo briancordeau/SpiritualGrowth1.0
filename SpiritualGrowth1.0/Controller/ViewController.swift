@@ -16,7 +16,7 @@ let refreshControl = UIRefreshControl()
 
 let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Activities.plist")
 
-
+var currentindex = 0
 
 
 
@@ -61,6 +61,11 @@ func loadActivities(){
     
 }
 
+ 
+
+
+
+
 
 class ViewController: UIViewController {
     
@@ -94,7 +99,6 @@ class ViewController: UIViewController {
         activityTableView.addSubview(refreshControl)
         refreshActivities((Any).self)
         
-        refreshControl.endRefreshing()
         
         
     }
@@ -123,12 +127,13 @@ class ViewController: UIViewController {
         
         spiritualDisciplines.shuffle()
         
-        activityTableView.reloadData()
         
+        saveActivities()
         
         refreshControl.endRefreshing()
         
-        saveActivities()
+        
+        activityTableView.reloadData()
     }
     
     
@@ -194,11 +199,55 @@ class ViewController: UIViewController {
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "showAdditionalResources"){
+                    let displayVC = segue.destination as! ResourcesViewController
+            //displayVC.displayResources.text = "moo"
+            print("stufff happening")
+            
+            print(displayVC.activityText)
+            //displayVC.activityText = spiritualDisciplines[currentindex].title
+            
+            let activityListForLabel = NSMutableAttributedString("")
+            
+            
+            let boldText = spiritualDisciplines[currentindex].title + "\n"
+            let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)]
+            let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
+            
+            let normalText = spiritualDisciplines[currentindex].name + "\n\n"
+            let normalString = NSMutableAttributedString(string:normalText)
+            
+            attributedString.append(normalString)
+            //attributedString.append(activityListForLabel)
+            activityListForLabel.append(attributedString)
+            activityListForLabel.append(NSMutableAttributedString(string:spiritualDisciplines[currentindex].resource ))
+            displayVC.activityText =  activityListForLabel
+
+           // cell.isUserInteractionEnabled = true
+            
+            
+            
+            
+            
+            }
+        
+        
+        
+    }
+    
+    
+    
 }
 
 
 extension ViewController: UITableViewDataSource,UITableViewDelegate
 {
+    
+    
+    
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -211,6 +260,7 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "activitiesToDo")
         let cell = tableView.dequeueReusableCell(withIdentifier: "activitiesToDo", for: indexPath)
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
 
@@ -236,14 +286,23 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
         cell.textLabel?.attributedText =  activityListForLabel
         cell.isUserInteractionEnabled = true
         //reloadData()
+        
+        
+        
+        
+        
+        
         return cell
     }
     
 
     func tableView(_ tableView: UITableView,     didSelectRowAt indexPath: IndexPath)  {
 
+        currentindex = indexPath.row
         
+        //print(cell.textLabel?.attributedText)
         
+    //checkbox stuff may use later
         
 //        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
 
@@ -257,13 +316,16 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
   //      tableView.deselectRow(at: indexPath, animated: true)
 
         
+//
+//        override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+//            if (segue.identifier == "Load View") {
+//                // pass data to next view
+//            }
+//        }
+//        
         
-        
-        
-        
-        
-        
-       // performSegue(withIdentifier: "showAdditionalResources", sender:self)
+      
+        performSegue(withIdentifier: "showAdditionalResources", sender:self)
         
     }
   
