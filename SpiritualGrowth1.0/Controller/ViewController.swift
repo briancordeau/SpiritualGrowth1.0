@@ -10,82 +10,65 @@ import UIKit
 
 //declare an empty discipline string for adding to
 
-var activitiesTodoToday=1
+
+//save as playlist to account for user's last preference on closing app
+//It should know what the last items were and keep them in order until refresh
+//Also keep the number of activities stored.
+
+
+var activitiesTodoToday=spiritualDisciplines[0].activities
 
 let refreshControl = UIRefreshControl()
 
+
+//Set a playlist to store the order, future checkboxes, etc etc
+//will need to use core data at some point in the future
 let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Activities.plist")
 
+
+//made this global to pass back and forth between classes
 var currentindex = 0
-
-
-
-
-func saveActivities(){
-    
-    //build encoder to save out activity list in its current state
-    
-    let encoder = PropertyListEncoder()
-    
-    do{
-        let data = try encoder.encode(spiritualDisciplines)
-        try data.write(to:dataFilePath!)
-    }catch{
-        print("error encoding item array")
-    }
-}
-
-
-func loadActivities(){
-    
-    //load plist to spiritual disciplines in its current state
-    
-    if let data = try? Data(contentsOf: dataFilePath!)
-    {
-        let decoder = PropertyListDecoder()
-        do{
-            spiritualDisciplines = try decoder.decode([Activity].self, from: data)
-            
-        } catch{
-            print("error")
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
-
- 
-
-
-
 
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var activityStepper: UIStepper!
+
+    
+    
+    //set up a table view for activity cells
     @IBOutlet weak var activityTableView: UITableView!
     
+    //label for number of activities, this text needs to be loaded by playlist
     @IBOutlet weak var numberOfActivities: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        //  print (dataFilePath)
-        
+        activityStepper.value = Double(activitiesTodoToday)
+
         //load activities based on current save
         
-        loadActivities()
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: path)
+        if let pathComponent = url.appendingPathComponent("Activities.plist") {
+            let filePath = pathComponent.path
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: filePath) {
+                //   print("FILE AVAILABLE")
+                loadActivities()
+                //    print(url)
+                //   print(dataFilePath as Any)
+            } else {
+                saveActivities()
+                //   print("FILE NOT AVAILABLE")
+                //   print(dataFilePath as Any)
+                
+            }
+        }
         
-        
+        //set up initial view and table to self
         numberOfActivities.text = String(activitiesTodoToday)
         
         activityTableView.delegate = self
@@ -93,77 +76,69 @@ class ViewController: UIViewController {
         activityTableView.allowsSelection = true
         activityTableView.isUserInteractionEnabled = true
         
-        
+        //upon refresh the items are shuffled and put back into cells
         refreshControl.addTarget(self, action: #selector(self.refreshActivities(_:)), for: .valueChanged)
         
+        //refresh table
         activityTableView.addSubview(refreshControl)
-        refreshActivities((Any).self)
+        // refreshActivities((Any).self)
         
         
         
     }
     
     
+    //code to work on stepper, each time it updates the class is shuffled, activity number changes,
     
     @IBAction func stepperUpdate(_ sender: UIStepper) {
-        
         activitiesTodoToday = Int(sender.value)
-        
+       
         numberOfActivities.text =  String(activitiesTodoToday)
         
         refreshActivities((Any).self)
-        
+                
+        saveActivities()
         
         
     }
     
+    //shuffle the activity data using built in function
     @IBAction func refreshActivities(_ sender: Any) {
         
         
         
-        //        numberOfActivities.text =  String(activitiesTodoToday)
-        
-        
-        
         spiritualDisciplines.shuffle()
-        
-        
+        //print(activitiesTodoToday)
+        //save activity to data model
         saveActivities()
         
         refreshControl.endRefreshing()
         
-        
+        //reload table
         activityTableView.reloadData()
     }
     
     
-    // Do any additional setup after loading the view.
+    //share button to send out activities to people
     
     @IBAction func shareMe(_ sender: UIButton) {
         
-        
+        //need to revisit this code, seems slow
+        //also what if things are not set up properlty?
+        //maybe this is version 2?
         
         let activityListForLabel = NSMutableAttributedString()
         
-        
         for c in 0...activitiesTodoToday-1 {
             
-            let boldText = spiritualDisciplines[c].title + "\n"
-            let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)]
-            let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
             
-            let normalText = spiritualDisciplines[c].name+"\n\n"
-            let normalString = NSMutableAttributedString(string:normalText)
-            
-            attributedString.append(normalString)
-            //attributedString.append(activityListForLabel)
-            activityListForLabel.append(attributedString)
-            
+            activityListForLabel.append(formatText(rowNum: c))
+            activityListForLabel.append(NSMutableAttributedString("\n\n"))
         }
         
         
         // text to share
-        let text = "I'm doing these:\n\n"+activityListForLabel.string+"\n\nDownload SpiritualGrowth App from the appstore"
+        let text = "I'm doing these:\n\n"+activityListForLabel.string+"Download SpiritualGrowth App from the iOS App store"
         
         // set up activity view controller
         let textToShare = [text]
@@ -180,58 +155,41 @@ class ViewController: UIViewController {
         
     }
     
+    //Open up google form for suggestions
+    //maybe this is version 2? It gets cluttered with the lower text, maybe remove
+    
     @IBAction func makeSuggestion(_ sender: Any) {
+        
         
         
         guard let url = URL(string: "https://forms.gle/3cE917kTV8pYCRLV9") else {
             return //be safe
         }
         
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(url)
-        }
         
-        
-        
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
         
     }
     
+    //prepare for segue by getting the activity resources set up in the system
+    // font formatting, new view controller, set up strings in same format
+    //why do this multiple times, how to fix the formatting to be consistent without regenerating code
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "showAdditionalResources"){
-                    let displayVC = segue.destination as! ResourcesViewController
-            //displayVC.displayResources.text = "moo"
-            print("stufff happening")
-            
-            print(displayVC.activityText)
-            //displayVC.activityText = spiritualDisciplines[currentindex].title
-            
-            let activityListForLabel = NSMutableAttributedString("")
+            let displayVC = segue.destination as! ResourcesViewController
             
             
-            let boldText = spiritualDisciplines[currentindex].title + "\n"
-            let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)]
-            let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
+            displayVC.activityText =  formatText(rowNum:currentindex)
             
-            let normalText = spiritualDisciplines[currentindex].name + "\n\n"
-            let normalString = NSMutableAttributedString(string:normalText)
-            
-            attributedString.append(normalString)
-            //attributedString.append(activityListForLabel)
-            activityListForLabel.append(attributedString)
-            activityListForLabel.append(NSMutableAttributedString(string:spiritualDisciplines[currentindex].resource ))
-            displayVC.activityText =  activityListForLabel
-
-           // cell.isUserInteractionEnabled = true
+            // cell.isUserInteractionEnabled = true
             
             
             
             
             
-            }
+        }
         
         
         
@@ -241,6 +199,8 @@ class ViewController: UIViewController {
     
 }
 
+
+//table starts here
 
 extension ViewController: UITableViewDataSource,UITableViewDelegate
 {
@@ -259,35 +219,14 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "activitiesToDo")
         let cell = tableView.dequeueReusableCell(withIdentifier: "activitiesToDo", for: indexPath)
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
-
+        
         
         cell.textLabel?.numberOfLines = 0
-        
-        
-        let activityListForLabel = NSMutableAttributedString("")
-        
-        
-        let boldText = spiritualDisciplines[indexPath.row].title + "\n"
-        let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)]
-        let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
-        
-        let normalText = spiritualDisciplines[indexPath.row].name
-        let normalString = NSMutableAttributedString(string:normalText)
-        
-        attributedString.append(normalString)
-        //attributedString.append(activityListForLabel)
-        activityListForLabel.append(attributedString)
-        
-        
-        cell.textLabel?.attributedText =  activityListForLabel
+        cell.textLabel?.attributedText =  formatText(rowNum:indexPath.row)
         cell.isUserInteractionEnabled = true
         //reloadData()
-        
-        
         
         
         
@@ -295,41 +234,109 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
         return cell
     }
     
-
+    
     func tableView(_ tableView: UITableView,     didSelectRowAt indexPath: IndexPath)  {
-
+        
         currentindex = indexPath.row
         
         //print(cell.textLabel?.attributedText)
         
-    //checkbox stuff may use later
+        //checkbox stuff may use later
         
-//        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-
-  //      if         tableView.cellForRow(at: indexPath)?.accessoryType == //.checkmark{
- //           tableView.cellForRow(at: indexPath)?.accessoryType = .none
-//}
- //       else {
- //           tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-  //      }
-//
-  //      tableView.deselectRow(at: indexPath, animated: true)
-
+        //        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         
-//
-//        override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-//            if (segue.identifier == "Load View") {
-//                // pass data to next view
-//            }
-//        }
-//        
+        //      if         tableView.cellForRow(at: indexPath)?.accessoryType == //.checkmark{
+        //           tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        //}
+        //       else {
+        //           tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        //      }
+        //
+        //      tableView.deselectRow(at: indexPath, animated: true)
         
-      
+        
+        //
+        //        override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        //            if (segue.identifier == "Load View") {
+        //                // pass data to next view
+        //            }
+        //        }
+        //
+        
+        
         performSegue(withIdentifier: "showAdditionalResources", sender:self)
         
     }
-  
     
     
     
+    
+}
+
+
+func saveActivities()
+
+{
+    
+    for index in 0 ..< spiritualDisciplines.count {
+        spiritualDisciplines[index].activities = activitiesTodoToday
+    }
+    
+    //build encoder to save out activity list in its current save state, do not shuffle
+    //until user specifies by swiping down
+    
+    
+    //build encoder to save class data to playlist
+    let encoder = PropertyListEncoder()
+    
+    do{
+        let data = try encoder.encode(spiritualDisciplines)
+        try data.write(to:dataFilePath!)
+    }catch{
+        print("error encoding item array")
+    }
+    
+}
+
+
+func loadActivities()
+{
+    //default plist must be generated first?
+    //load plist to spiritual disciplines in its current state
+    //if nothing in playlist, run save activities
+    
+    if let data = try? Data(contentsOf: dataFilePath!)
+    {
+        let decoder = PropertyListDecoder()
+        do{
+            spiritualDisciplines = try decoder.decode([Activity].self, from: data)
+            //print("activities loaded")
+        } catch{
+            //if file does not exist do this first... shuffle, save, print errors
+            //this should only happen the first time the app runs
+            spiritualDisciplines.shuffle()
+            saveActivities()
+            print("activies did not load, new one created")
+        }
+    }
+        
+}
+
+
+func formatText(rowNum:Int)->NSMutableAttributedString {
+    
+    let activityListForLabel = NSMutableAttributedString("")
+    
+    
+    let boldText = spiritualDisciplines[rowNum].title + "\n"
+    let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)]
+    let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
+    
+    let normalText = spiritualDisciplines[rowNum].activity
+    let normalString = NSMutableAttributedString(string:normalText)
+    
+    attributedString.append(normalString)
+    //attributedString.append(activityListForLabel)
+    activityListForLabel.append(attributedString)
+    return activityListForLabel
 }

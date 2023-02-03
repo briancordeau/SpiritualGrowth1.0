@@ -115,14 +115,10 @@
                                     <constraint firstItem="d5B-qs-qYT" firstAttribute="leading" secondItem="OIZ-WO-052" secondAttribute="leading" constant="5" id="mth-hc-8Pt"/>
                                 </constraints>
                             </stackView>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="c4w-pv-1aT">
-                                <rect key="frame" x="10" y="10" width="94" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </stepper>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="d0E-s8-Akf" userLabel="MiddleStack">
                                 <rect key="frame" x="0.0" y="235" width="375" height="305"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qo7-EO-FOL">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qo7-EO-FOL">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="305"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
@@ -212,6 +208,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityStepper" destination="bdb-qX-Bho" id="oDz-XO-fLw"/>
                         <outlet property="activityTableView" destination="qo7-EO-FOL" id="szw-0V-E9X"/>
                         <outlet property="numberOfActivities" destination="GyV-9q-O6b" id="q2z-SS-AIw"/>
                         <segue destination="Ykh-kL-O6J" kind="presentation" identifier="showAdditionalResources" id="F1m-zR-lh3"/>
