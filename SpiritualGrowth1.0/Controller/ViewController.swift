@@ -48,6 +48,10 @@ class ViewController: UIViewController {
         
         activityStepper.value = Double(activitiesTodoToday)
 
+        
+        activityStepper.setDecrementImage(activityStepper.decrementImage(for: .normal), for: .normal)
+        activityStepper.setIncrementImage(activityStepper.incrementImage(for: .normal), for: .normal)
+        
         //load activities based on current save
         
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
@@ -91,6 +95,9 @@ class ViewController: UIViewController {
     //code to work on stepper, each time it updates the class is shuffled, activity number changes,
     
     @IBAction func stepperUpdate(_ sender: UIStepper) {
+        
+        
+
         activitiesTodoToday = Int(sender.value)
        
         numberOfActivities.text =  String(activitiesTodoToday)
@@ -143,10 +150,10 @@ class ViewController: UIViewController {
         // set up activity view controller
         let textToShare = [text]
         let activityViewController = UIActivityViewController(activityItems: textToShare as [Any], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+      //  activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
         
         // exclude some activity types from the list (optional)
-        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop ]
+       // activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop ]
         
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
@@ -171,28 +178,29 @@ class ViewController: UIViewController {
         
     }
     
-    //prepare for segue by getting the activity resources set up in the system
-    // font formatting, new view controller, set up strings in same format
+   // prepare for segue by getting the activity resources set up in the system
+     //font formatting, new view controller, set up strings in same format
     //why do this multiple times, how to fix the formatting to be consistent without regenerating code
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+
         if(segue.identifier == "showAdditionalResources"){
             let displayVC = segue.destination as! ResourcesViewController
-            
-            
+
+
             displayVC.activityText =  formatText(rowNum:currentindex)
-            
+            displayVC.resourceText = spiritualDisciplines[currentindex].resource
+
             // cell.isUserInteractionEnabled = true
-            
-            
-            
-            
-            
+
+
+
+
+
         }
-        
-        
-        
+
+
+
     }
     
     
@@ -339,4 +347,15 @@ func formatText(rowNum:Int)->NSMutableAttributedString {
     //attributedString.append(activityListForLabel)
     activityListForLabel.append(attributedString)
     return activityListForLabel
+}
+
+
+
+// concatenate attributed strings
+func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedString
+{
+    let result = NSMutableAttributedString()
+    result.append(left)
+    result.append(right)
+    return result
 }
