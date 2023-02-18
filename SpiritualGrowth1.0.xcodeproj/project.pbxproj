@@ -128,8 +128,8 @@
 		55A66AED295A2919003D4BBC /* SpiritualGrowth1.0 */ = {
 			isa = PBXGroup;
 			children = (
-				55A66AEE295A2919003D4BBC /* AppDelegate.swift */,
 				55A66AF0295A2919003D4BBC /* SceneDelegate.swift */,
+				55A66AEE295A2919003D4BBC /* AppDelegate.swift */,
 				559F78C9295ABFD700022E52 /* Model */,
 				559F78CA295ABFE600022E52 /* View */,
 				559F78C8295AB69A00022E52 /* Controller */,
