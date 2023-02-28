@@ -16,7 +16,7 @@ import UIKit
 //Also keep the number of activities stored.
 
 
-var activitiesTodoToday=spiritualDisciplines[0].activities
+var goalsForMe=spiritualDisciplines[0].activities
 
 let refreshControl = UIRefreshControl()
 
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityStepper.value = Double(activitiesTodoToday)
+        activityStepper.value = Double(goalsForMe)
 
         
         activityStepper.setDecrementImage(activityStepper.decrementImage(for: .normal), for: .normal)
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
         }
         
         //set up initial view and table to self
-        numberOfActivities.text = String(activitiesTodoToday)
+        numberOfActivities.text = String(goalsForMe)
         
         activityTableView.delegate = self
         activityTableView.dataSource = self
@@ -98,9 +98,9 @@ class ViewController: UIViewController {
         
         
 
-        activitiesTodoToday = Int(sender.value)
+        goalsForMe = Int(sender.value)
        
-        numberOfActivities.text =  String(activitiesTodoToday)
+        numberOfActivities.text =  String(goalsForMe)
         
         refreshActivities((Any).self)
                 
@@ -112,17 +112,31 @@ class ViewController: UIViewController {
     //shuffle the activity data using built in function
     @IBAction func refreshActivities(_ sender: Any) {
         
-        
+        //spiritualDisciplines = 
+       
+        if (MemoryLayout.size(ofValue: spiritualDisciplines)
+        != MemoryLayout.size(ofValue: spiritualDisciplinesOriginal)
+            )
+            {
+            print(MemoryLayout.size(ofValue: spiritualDisciplines))
+
+            spiritualDisciplines=spiritualDisciplinesOriginal
+                  saveActivities()
+
+
+        }
+        print(MemoryLayout.size(ofValue: spiritualDisciplines))
+
         
         spiritualDisciplines.shuffle()
         //print(activitiesTodoToday)
         //save activity to data model
-        saveActivities()
         
         refreshControl.endRefreshing()
         
         //reload table
         activityTableView.reloadData()
+        
     }
     
     
@@ -136,7 +150,7 @@ class ViewController: UIViewController {
         
         let activityListForLabel = NSMutableAttributedString()
         
-        for c in 0...activitiesTodoToday-1 {
+        for c in 0...goalsForMe-1 {
             
             
             activityListForLabel.append(formatText(rowNum: c))
@@ -147,7 +161,7 @@ class ViewController: UIViewController {
         // text to share
         
         
-        let text = "Goal(s) for me:\n\n"+activityListForLabel.string+"Download SpiritualGrowth App from the iOS App store"
+        let text = "Goal(s) for me:\n\n"+activityListForLabel.string+"Learn more at https://growth2day.wordpress.com/"
         
         // set up activity view controller
         let textToShare = [text]
@@ -221,7 +235,7 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activitiesTodoToday
+        return goalsForMe
     }
     
     
@@ -249,30 +263,6 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
         
         currentindex = indexPath.row
         
-        //print(cell.textLabel?.attributedText)
-        
-        //checkbox stuff may use later
-        
-        //        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        
-        //      if         tableView.cellForRow(at: indexPath)?.accessoryType == //.checkmark{
-        //           tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        //}
-        //       else {
-        //           tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        //      }
-        //
-        //      tableView.deselectRow(at: indexPath, animated: true)
-        
-        
-        //
-        //        override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        //            if (segue.identifier == "Load View") {
-        //                // pass data to next view
-        //            }
-        //        }
-        //
-        
         
         performSegue(withIdentifier: "showAdditionalResources", sender:self)
         
@@ -289,7 +279,7 @@ func saveActivities()
 {
     
     for index in 0 ..< spiritualDisciplines.count {
-        spiritualDisciplines[index].activities = activitiesTodoToday
+        spiritualDisciplines[index].activities = goalsForMe
     }
     
     //build encoder to save out activity list in its current save state, do not shuffle
@@ -319,7 +309,7 @@ func loadActivities()
     {
         let decoder = PropertyListDecoder()
         do{
-            spiritualDisciplines = try decoder.decode([Activity].self, from: data)
+            spiritualDisciplines = try decoder.decode([Goal].self, from: data)
             //print("activities loaded")
         } catch{
             //if file does not exist do this first... shuffle, save, print errors
