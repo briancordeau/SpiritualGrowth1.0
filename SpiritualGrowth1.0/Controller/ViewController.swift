@@ -161,7 +161,7 @@ class ViewController: UIViewController {
         // text to share
         
         
-        let text = "Goal(s) for me:\n\n"+activityListForLabel.string+"Learn more at https://growth2day.wordpress.com/"
+        let text = "My Goal(s):\n\n"+activityListForLabel.string+"Learn more at https://growth2day.wordpress.com/"
         
         // set up activity view controller
         let textToShare = [text]
