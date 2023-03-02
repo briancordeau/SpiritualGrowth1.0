@@ -23,7 +23,7 @@ let refreshControl = UIRefreshControl()
 
 //Set a playlist to store the order, future checkboxes, etc etc
 //will need to use core data at some point in the future
-let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Activities.plist")
+let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Goals.plist")
 
 
 //made this global to pass back and forth between classes
@@ -46,6 +46,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //print(dataFilePath)
+        
         activityStepper.value = Double(goalsForMe)
 
         
@@ -56,7 +58,7 @@ class ViewController: UIViewController {
         
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let url = NSURL(fileURLWithPath: path)
-        if let pathComponent = url.appendingPathComponent("Activities.plist") {
+        if let pathComponent = url.appendingPathComponent("Goals.plist") {
             let filePath = pathComponent.path
             let fileManager = FileManager.default
             if fileManager.fileExists(atPath: filePath) {
