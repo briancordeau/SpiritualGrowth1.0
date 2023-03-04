@@ -64,6 +64,7 @@ class ViewController: UIViewController {
             if fileManager.fileExists(atPath: filePath) {
                 //   print("FILE AVAILABLE")
                 loadActivities()
+                
                 //    print(url)
                 //   print(dataFilePath as Any)
             } else {
@@ -116,18 +117,20 @@ class ViewController: UIViewController {
         
         //spiritualDisciplines = 
        
-        if (MemoryLayout.size(ofValue: spiritualDisciplines)
-        != MemoryLayout.size(ofValue: spiritualDisciplinesOriginal)
+        if ( spiritualDisciplines.count
+            != spiritualDisciplinesOriginal.count
             )
             {
-            print(MemoryLayout.size(ofValue: spiritualDisciplines))
+            //print(MemoryLayout.size(ofValue: spiritualDisciplines))
 
             spiritualDisciplines=spiritualDisciplinesOriginal
-                  saveActivities()
+            spiritualDisciplines.shuffle()
+
+            saveActivities()
 
 
         }
-        print(MemoryLayout.size(ofValue: spiritualDisciplines))
+        //print(MemoryLayout.size(ofValue: spiritualDisciplines))
 
         
         spiritualDisciplines.shuffle()
@@ -138,6 +141,9 @@ class ViewController: UIViewController {
         
         //reload table
         activityTableView.reloadData()
+        
+        saveActivities()
+
         
     }
     
@@ -316,6 +322,7 @@ func loadActivities()
         } catch{
             //if file does not exist do this first... shuffle, save, print errors
             //this should only happen the first time the app runs
+            spiritualDisciplines = spiritualDisciplinesOriginal
             spiritualDisciplines.shuffle()
             saveActivities()
             print("activies did not load, new one created")

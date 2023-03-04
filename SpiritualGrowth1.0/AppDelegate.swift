@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         saveActivities()
         loadActivities()
+        spiritualDisciplines.shuffle()
         
         return true
     }
