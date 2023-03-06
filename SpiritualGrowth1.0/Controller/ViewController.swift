@@ -112,20 +112,10 @@ class ViewController: UIViewController {
     //shuffle the activity data using built in function
     @IBAction func refreshActivities(_ sender: Any) {
         
-        //spiritualDisciplines = 
-       
-        if (MemoryLayout.size(ofValue: spiritualDisciplines)
-        != MemoryLayout.size(ofValue: spiritualDisciplinesOriginal)
-            )
-            {
-            print(MemoryLayout.size(ofValue: spiritualDisciplines))
-
-            spiritualDisciplines=spiritualDisciplinesOriginal
-                  saveActivities()
+        spiritualDisciplines = spiritualDisciplinesOriginal
+        saveActivities()
 
 
-        }
-        print(MemoryLayout.size(ofValue: spiritualDisciplines))
 
         
         spiritualDisciplines.shuffle()
