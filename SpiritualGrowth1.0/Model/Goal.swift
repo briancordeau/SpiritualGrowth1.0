@@ -130,7 +130,6 @@ let spiritualDisciplinesOriginal = [Goal(title:"Community", activity:"Talk to a 
                                     Goal(title:"Reflect", activity:"Ask the Lord to shine a light on any area that you have pride and remember to point back to the Lord in all things.", resource:"Proverbs 11:2"),
                                     Goal(title:"Study", activity:"I did not hear about this tool until later in life, but the Heidelberg Catechism linked in the Resources page is a well laid out teaching and learning tool that is straightforward to follow, yet will challenge you to grow. ", resource:"The style of the Heidelberg Catechism (1563) goes through fifty-two days of questions corresponding with fifty-two weeks of sermons. Take a look at this and set up a routine if you think it will work for you, focus on one each week to understand, research, or meditate on. Pray about the parts you do not understand and always go back to the Word for understanding.\n\nhttps://www.crcna.org/welcome/beliefs/confessions/heidelberg-catechism")]
 
-var spiritualDisciplines = spiritualDisciplinesOriginal
 
 
 struct Goal: Codable {

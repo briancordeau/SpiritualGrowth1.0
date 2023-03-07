@@ -16,6 +16,14 @@ import UIKit
 //Also keep the number of activities stored.
 
 
+var spiritualDisciplines = spiritualDisciplinesOriginal
+
+
+
+
+
+
+
 var goalsForMe=spiritualDisciplines[0].activities
 
 let refreshControl = UIRefreshControl()
@@ -44,6 +52,7 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
+                
         super.viewDidLoad()
         
         activityStepper.value = Double(goalsForMe)
@@ -221,13 +230,9 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
     
     
     
-    
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return goalsForMe
     }
-    
     
     
     
