@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       //  spiritualDisciplines.shuffle()
        // print("apploadinitial")
 
-        saveActivities()
+        //saveActivities()
         loadActivities()
-        spiritualDisciplines.shuffle()
+        //spiritualDisciplines.shuffle()
         
         return true
     }
