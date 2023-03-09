@@ -16,6 +16,9 @@ import UIKit
 //Also keep the number of activities stored.
 
 
+var spiritualDisciplines = spiritualDisciplinesOriginal
+
+
 var goalsForMe=spiritualDisciplines[0].activities
 
 let refreshControl = UIRefreshControl()
@@ -23,7 +26,7 @@ let refreshControl = UIRefreshControl()
 
 //Set a playlist to store the order, future checkboxes, etc etc
 //will need to use core data at some point in the future
-let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Goals.plist")
+let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Goal.plist")
 
 
 //made this global to pass back and forth between classes
@@ -44,10 +47,9 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
+                
         super.viewDidLoad()
-        
-        //print(dataFilePath)
-        
+        spiritualDisciplines.shuffle()
         activityStepper.value = Double(goalsForMe)
 
         
@@ -58,7 +60,7 @@ class ViewController: UIViewController {
         
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let url = NSURL(fileURLWithPath: path)
-        if let pathComponent = url.appendingPathComponent("Goals.plist") {
+        if let pathComponent = url.appendingPathComponent("Goal.plist") {
             let filePath = pathComponent.path
             let fileManager = FileManager.default
             if fileManager.fileExists(atPath: filePath) {
@@ -118,9 +120,6 @@ class ViewController: UIViewController {
         spiritualDisciplines = spiritualDisciplinesOriginal
         saveActivities()
 
-
-
-        
         spiritualDisciplines.shuffle()
         //print(activitiesTodoToday)
         //save activity to data model
@@ -225,10 +224,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource,UITableViewDelegate
 {
     
-    
-    
-    
-    
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return goalsForMe
@@ -236,9 +232,8 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
     
     
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "activitiesToDo", for: indexPath)
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
         
@@ -247,8 +242,6 @@ extension ViewController: UITableViewDataSource,UITableViewDelegate
         cell.textLabel?.attributedText =  formatText(rowNum:indexPath.row)
         cell.isUserInteractionEnabled = true
         //reloadData()
-        
-        
         
         
         return cell
@@ -306,6 +299,7 @@ func loadActivities()
         let decoder = PropertyListDecoder()
         do{
             spiritualDisciplines = try decoder.decode([Goal].self, from: data)
+            print("Try to load")
             //print("activities loaded")
         } catch{
             //if file does not exist do this first... shuffle, save, print errors
